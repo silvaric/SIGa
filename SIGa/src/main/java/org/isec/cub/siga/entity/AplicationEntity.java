@@ -52,7 +52,7 @@ public class AplicationEntity{
     }
 
     public void description(){
-        Log.w("LABEL", "Dados recolhidos :> \nNome : " + getNome() + "\nCategoria : " + getCategoria() +
+        Log.w("LABEL", "\nDados recolhidos :> \nNome : " + getNome() + "\nCategoria : " + getCategoria() +
                 "\nLocalização :" + getLocation() + "\nDuranção : " + getDuracao());
     }
 }

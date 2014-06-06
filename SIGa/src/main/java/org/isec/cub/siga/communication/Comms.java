@@ -1,6 +1,5 @@
 package org.isec.cub.siga.communication;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import com.parse.ParseException;
@@ -8,8 +7,6 @@ import com.parse.ParseObject;
 
 import org.isec.cub.siga.entity.AplicationEntity;
 import org.isec.cub.siga.service.MyService;
-
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by rodrigo.tavares on 04-06-2014.
@@ -37,18 +34,20 @@ public class Comms {
 
         String category="";
         String urlToRequest = "http://www.appbrain.com/search?q=" + appName.trim();
+        Log.w("CATEGORY", "urlToRequest :" + urlToRequest);
+        category = ReqCategory.getCategory(urlToRequest);
 
-        AsyncTask<String, String, String> execute = new RequestCategory().execute(urlToRequest);
-
-        try {
+        /*try {
+            AsyncTask<String, Void, String> execute = new RequestCategory().execute(urlToRequest);
             category = execute.get();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
             return null;
         } catch (ExecutionException e) {
             e.printStackTrace();
             return null;
-        }
+        }*/
 
         //--- força aqui um GarbageCollect só pra evitar situações constrangedoras
         System.gc();
@@ -64,8 +63,12 @@ public class Comms {
          * */
 
         double[] location;
-        final AsyncTask<MyService, Void, double[]> execute = new RequestLocationGPS().execute(myService);
-        Log.w("LABEL", "2");
+
+        location = ReqLocation.getLocation(myService);
+        Log.w("LOCATION", "location : " + location);
+
+        /*AsyncTask<MyService, String, double[]> execute = new RequestLocationGPS().execute(myService);
+
         try {
             location = execute.get();
         } catch (InterruptedException e) {
@@ -74,7 +77,7 @@ public class Comms {
         } catch (ExecutionException e) {
             e.printStackTrace();
             return null;
-        }
+        }*/
 
         //--- força aqui um GarbageCollect só pra evitar situações constrangedoras
         System.gc();

@@ -129,8 +129,7 @@ public class AppListener extends Thread {
         Timestamp timestamp;
 
         //--- recolhe a categoria da app
-        //categoria = Comms.getComms().getAppCategory(appName);
-        categoria = "";
+        categoria = Comms.getComms().getAppCategory(appName);
 
         //--- recolhe a localização da app
         location = Comms.getComms().getAppGPS(myService);
