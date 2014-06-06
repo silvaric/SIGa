@@ -31,9 +31,9 @@ public class MainActivity extends ActionBarActivity {
 
         Log.w("LABEL", "Correu o main activity");
 
-        /**************************************
+        /*****************************************
          *  Process Background - ActivityManager *
-         **************************************/
+         *****************************************/
 
         Calendar cal = Calendar.getInstance();
 

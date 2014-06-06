@@ -1,5 +1,7 @@
 package org.isec.cub.siga.entity;
 
+import android.util.Log;
+
 import java.sql.Timestamp;
 
 /**
@@ -9,6 +11,7 @@ public class AplicationEntity{
 
     private Timestamp   timestamp;
     private String      categoria;
+    private String      location;
     private String      nome;
     private int duracao;
 
@@ -28,6 +31,10 @@ public class AplicationEntity{
         this.categoria = categoria;
     }
 
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
+
     public Timestamp getTimestamp() {
         return timestamp;
     }
@@ -42,5 +49,10 @@ public class AplicationEntity{
 
     public void setDuracao(int duracao) {
         this.duracao = duracao;
+    }
+
+    public void description(){
+        Log.w("LABEL", "Dados recolhidos :> \nNome : " + getNome() + "\nCategoria : " + getCategoria() +
+                "\nLocalização :" + getLocation() + "\nDuranção : " + getDuracao());
     }
 }

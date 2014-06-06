@@ -7,6 +7,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 
 import org.isec.cub.siga.entity.AplicationEntity;
+import org.isec.cub.siga.service.MyService;
 
 import java.util.concurrent.ExecutionException;
 
@@ -53,6 +54,32 @@ public class Comms {
         System.gc();
 
         return category;
+    }
+
+    public double[] getAppGPS(MyService myService){
+
+        /* Devolve a posição do utilzador;
+         * Devolve null se ocorreu algum erro;
+
+         * */
+
+        double[] location;
+        final AsyncTask<MyService, Void, double[]> execute = new RequestLocationGPS().execute(myService);
+        Log.w("LABEL", "2");
+        try {
+            location = execute.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        //--- força aqui um GarbageCollect só pra evitar situações constrangedoras
+        System.gc();
+
+        return location;
     }
 
     public Boolean sendData(AplicationEntity appEnt){

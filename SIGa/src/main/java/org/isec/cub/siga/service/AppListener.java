@@ -125,19 +125,28 @@ public class AppListener extends Thread {
 
         AplicationEntity appEntity = new AplicationEntity();
         String categoria;
+        double[] location;
         Timestamp timestamp;
 
-        //--- pega a categoria da app
-        categoria = Comms.getComms().getAppCategory(appName);
+        //--- recolhe a categoria da app
+        //categoria = Comms.getComms().getAppCategory(appName);
+        categoria = "";
 
-        //--- pega o timestamp
+        //--- recolhe a localização da app
+        location = Comms.getComms().getAppGPS(myService);
+        Log.w("LABEL", "location : " + location);
+        //--- recolhe o timestamp
         Calendar calendar = Calendar.getInstance();
         timestamp = new Timestamp(calendar.getTime().getTime());
 
         //--- popula o objeto
         appEntity.setNome(appName);
         appEntity.setCategoria(categoria);
+        appEntity.setLocation(String.valueOf(location));
         appEntity.setTimestamp(timestamp);
+
+        //--- imprime o objeto
+        appEntity.description();
 
         return appEntity;
     }
