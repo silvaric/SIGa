@@ -100,12 +100,15 @@ public class Comms {
         sendApplicationName.put("Duration", appEnt.getDuracao());
         sendApplicationName.put("Location", appEnt.getLocation());
 
+        //--- imprime o objeto
+        appEnt.description();
+
         try {
             sendApplicationName.save();
             return true;
         } catch (ParseException e) {
             e.printStackTrace();
-            Log.w("LABEL", "Falhou no envio, causa: " + e.getCause());
+            Log.w("SEND", "Falhou no envio, causa: " + e.getCause());
             return false;
         }
     }

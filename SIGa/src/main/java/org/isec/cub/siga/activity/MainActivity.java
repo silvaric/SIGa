@@ -29,7 +29,11 @@ public class MainActivity extends ActionBarActivity {
 
         Parse.initialize(this, "t2RlnC6F16lCXQFtL06ADqrMAos0X24u3Log9MCs", "rBj3NS9AESRPOmNTW7Q4J7XwP6J0ys6jeJVlLO7L");
 
-        Log.w("LABEL", "Correu o main activity");
+        /*
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "TESTE");
+        testObject.saveInBackground();
+        */
 
         /*****************************************
          *  Process Background - ActivityManager *
@@ -40,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, MyService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
 
-        Log.w("LABEL", "Fez o getservice: " + pintent.toString());
+        Log.w("MAIN", "Fez o getservice: " + pintent.toString());
 
        //--- rodrigo.tavares - em principio deve bastar colocar a correr uma vez e o android mantem o serviço a correr com o "sticky"
 

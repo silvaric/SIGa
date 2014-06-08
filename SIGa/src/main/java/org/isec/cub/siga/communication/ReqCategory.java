@@ -1,5 +1,14 @@
 package org.isec.cub.siga.communication;
 
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.IOException;
+
 /**
  * Created by silvaric on 06/06/14.
  */
@@ -32,7 +41,25 @@ public class ReqCategory {
             out.println("2e : " + e.getMessage());
         }*/
 
-        responseString = "Uncategorized";
+        HttpClient Client = new DefaultHttpClient();
+        String Content;
+        String Error = null;
+
+        try {
+            HttpGet httpget = new HttpGet(urlToRequest);
+            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            responseString = Client.execute(httpget, responseHandler);
+        } catch (ClientProtocolException e) {
+            System.out.println("1e : " + e.getMessage());
+
+        } catch (IOException e) {
+            System.out.println("2e : " + e.getMessage());
+
+        }
+
+        if (responseString == null) {
+            responseString = "Uncategorized";
+        }
     }
 
     public static String getCategory(String urlToRequest){

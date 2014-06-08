@@ -4,7 +4,6 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.parse.ParseGeoPoint;
@@ -87,7 +86,7 @@ public class AppListener extends Thread {
 
                 if(appEntity != null) {
 
-                    Log.w("LABEL", "Vai adicionar ao array: " + lastAppDetected);
+                    Log.w("PREPAR", "Vai adicionar ao array: " + lastAppDetected);
 
                     //--- adiciona a app ao array
                     this.addToAppToSendList(appEntity);
@@ -112,7 +111,7 @@ public class AppListener extends Thread {
             //--- ATENÇÃO: Aqui podemos controlar quantos dados queremos enviar de cada vez
             if(appToSendList != null && appToSendList.size() > 0) {
 
-                Log.w("LABEL", "Olha! Vai enviar!!!");
+                Log.w("SEND", "Olha! Vai enviar!!!");
 
                 //--- envia todos os dados da lista e liberta-a
                 this.dumpAppToSendList();
@@ -145,7 +144,7 @@ public class AppListener extends Thread {
         appEntity.setTimestamp(timestamp);
 
         //--- imprime o objeto
-        appEntity.description();
+        //appEntity.description();
 
         return appEntity;
     }
@@ -188,9 +187,9 @@ public class AppListener extends Thread {
         ConnectivityManager conMgr = (ConnectivityManager)myService.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         //--- verifica se está ligado à internet
-        if(conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING){
+        //if(conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING){
 
-            Log.w("LABEL", "Vou despejar o array toda pah! :D");
+            Log.w("SEND", "Vou despejar o array toda pah! :D");
 
             /*ParseObject testObject = new ParseObject("TestObject");
             testObject.put("foo", "bar");
@@ -199,6 +198,7 @@ public class AppListener extends Thread {
             //--- corre o array de dados a enviar
             for(int i=0; i<appToSendList.size(); i++) {
 
+                Log.w("SEND", "Array de " + i+1 + "/" + appToSendList.size());
                 //--- envia o objeto entidade
                 Comms.getComms().sendData(appToSendList.get(i));
             }
@@ -208,9 +208,9 @@ public class AppListener extends Thread {
 
             //--- força o GarbageColection
             System.gc();
-        }
-        else
-            Log.w("LABEL", "Ia enviar, mas não há rede :(");
+//        }
+//        else
+//            Log.w("LABEL", "Ia enviar, mas não há rede :(");
     }
 
     //*** pára a thread. não vai ser usado, mas pronto ***

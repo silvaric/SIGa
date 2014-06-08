@@ -17,13 +17,13 @@ public class MyService extends Service {
 
         ArrayList<String> appIgnoreList = new ArrayList<String>();
 
-        Log.w("LABEL", "Iniciou o serviço");
+        Log.w("SERVICE", "Iniciou o serviço");
 
         //--- popula o array de apps a ignorar
         appIgnoreList.add("SIGa");
         appIgnoreList.add("Launcher");
 
-        Log.w("LABEL", "Vai começar o applistener");
+        Log.w("SERVICE", "Vai começar o applistener");
         //--- inicia o listener
         AppListener appListener = new AppListener(this, appIgnoreList);
         appListener.start();
