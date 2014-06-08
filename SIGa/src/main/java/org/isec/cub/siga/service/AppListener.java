@@ -198,7 +198,7 @@ public class AppListener extends Thread {
             //--- corre o array de dados a enviar
             for(int i=0; i<appToSendList.size(); i++) {
 
-                Log.w("AppListener", "[SEND] Object array " + i + "/" + appToSendList.size());
+                Log.w("AppListener", "[SEND] Object array " + (i+1) + "/" + appToSendList.size());
                 //--- envia o objeto entidade
                 Comms.getComms().sendData(appToSendList.get(i));
             }

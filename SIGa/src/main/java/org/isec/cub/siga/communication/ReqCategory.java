@@ -103,11 +103,6 @@ public class ReqCategory {
             responseString = resultNode.getText().toString();
             Log.w("CATEGORY", "[SUCCESS-PARSE] category : " + responseString);
         }
-
-        if (responseString == null) {
-            responseString = "Uncategorized";
-            Log.w("CATEGORY", "[FAILURE-PARSE] category : " + responseString);
-        }
     }
 
     public static String getCategory(String urlToRequest){

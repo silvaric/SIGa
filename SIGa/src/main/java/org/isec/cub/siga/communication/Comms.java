@@ -35,6 +35,10 @@ public class Comms {
 
         String urlToRequest = "http://www.appbrain.com/search?q=" + appName.trim();
         String category = ReqCategory.getCategory(urlToRequest);
+        if (category == null) {
+            category = "Uncategorized";
+            Log.w("CATEGORY", "[FAILURE-PARSE] category : " + category);
+        }
 
         /*try {
             AsyncTask<String, Void, String> execute = new RequestCategory().execute(urlToRequest);

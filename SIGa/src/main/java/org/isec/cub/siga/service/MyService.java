@@ -24,6 +24,8 @@ public class MyService extends Service {
         appIgnoreList.add("SIGa");
         appIgnoreList.add("Launcher");
         appIgnoreList.add("Discador");
+        appIgnoreList.add("Settings");
+        appIgnoreList.add("Configurações");
 
         //--- inicia o listener
         AppListener appListener = new AppListener(this, appIgnoreList);
