@@ -7,7 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.parse.ParseObject;
+import com.parse.ParseGeoPoint;
 
 import org.isec.cub.siga.communication.Comms;
 import org.isec.cub.siga.entity.AplicationEntity;
@@ -125,7 +125,7 @@ public class AppListener extends Thread {
 
         AplicationEntity appEntity = new AplicationEntity();
         String categoria;
-        double[] location;
+        ParseGeoPoint location;
         Timestamp timestamp;
 
         //--- recolhe a categoria da app
@@ -133,7 +133,7 @@ public class AppListener extends Thread {
 
         //--- recolhe a localização da app
         location = Comms.getComms().getAppGPS(myService);
-        Log.w("LABEL", "location : " + location);
+
         //--- recolhe o timestamp
         Calendar calendar = Calendar.getInstance();
         timestamp = new Timestamp(calendar.getTime().getTime());
@@ -141,7 +141,7 @@ public class AppListener extends Thread {
         //--- popula o objeto
         appEntity.setNome(appName);
         appEntity.setCategoria(categoria);
-        appEntity.setLocation(String.valueOf(location));
+        appEntity.setLocation(location);
         appEntity.setTimestamp(timestamp);
 
         //--- imprime o objeto
@@ -192,9 +192,9 @@ public class AppListener extends Thread {
 
             Log.w("LABEL", "Vou despejar o array toda pah! :D");
 
-            ParseObject testObject = new ParseObject("TestObject");
+            /*ParseObject testObject = new ParseObject("TestObject");
             testObject.put("foo", "bar");
-            testObject.saveInBackground();
+            testObject.saveInBackground();*/
 
             //--- corre o array de dados a enviar
             for(int i=0; i<appToSendList.size(); i++) {

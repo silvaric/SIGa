@@ -5,6 +5,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.util.Log;
 
+import com.parse.ParseGeoPoint;
+
 import org.isec.cub.siga.service.MyService;
 
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  */
 public class ReqLocation {
 
-    private static double[] responseString;
+    private static ParseGeoPoint responseString;
 
     private ReqLocation(MyService myService) {
 
@@ -29,17 +31,16 @@ public class ReqLocation {
             if (l != null) break;
         }
 
-        double[] gps = new double[2];
         if (l != null) {
-            Log.w("LOCATION", "getLatitude : " + l.getLatitude());
-            Log.w("LOCATION", "getLongitude : " + l.getLongitude());
-            gps[0] = l.getLatitude();
-            gps[1] = l.getLongitude();
+            responseString = new ParseGeoPoint(l.getLatitude(),l.getLongitude());
+            Log.w("LOCATION", "PARSE getLatitude : " + responseString.getLatitude());
+            Log.w("LOCATION", "PARSE getLongitude : " + responseString.getLongitude());
+        }else{
+            responseString = new ParseGeoPoint();
         }
-        responseString = gps;
     }
 
-    public static double[] getLocation(MyService myService){
+    public static ParseGeoPoint getLocation(MyService myService){
         new ReqLocation(myService);
         return responseString;
     }

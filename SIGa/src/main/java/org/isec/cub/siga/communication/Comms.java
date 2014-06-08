@@ -3,6 +3,7 @@ package org.isec.cub.siga.communication;
 import android.util.Log;
 
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 
 import org.isec.cub.siga.entity.AplicationEntity;
@@ -55,17 +56,16 @@ public class Comms {
         return category;
     }
 
-    public double[] getAppGPS(MyService myService){
+    public ParseGeoPoint getAppGPS(MyService myService){
 
         /* Devolve a posição do utilzador;
          * Devolve null se ocorreu algum erro;
 
          * */
 
-        double[] location;
+        ParseGeoPoint location;
 
         location = ReqLocation.getLocation(myService);
-        Log.w("LOCATION", "location : " + location);
 
         /*AsyncTask<MyService, String, double[]> execute = new RequestLocationGPS().execute(myService);
 
@@ -91,12 +91,14 @@ public class Comms {
          * Devolve false se ocorreu algum erro.
          * */
 
-        ParseObject sendApplicationName = new ParseObject("sendApplicationName");
+        //
+        //ParseObject sendApplicationName = new ParseObject("sendDistributonSIGa");
+        ParseObject sendApplicationName = new ParseObject("sendDevelopmentSIGa");
 
         sendApplicationName.put("AppName", appEnt.getNome());
         sendApplicationName.put("Category", appEnt.getCategoria());
         sendApplicationName.put("Duration", appEnt.getDuracao());
-        //--- TODO: acrescentar os resto dos atributos (atenção ao atributo da posição e da duração)
+        sendApplicationName.put("Location", appEnt.getLocation());
 
         try {
             sendApplicationName.save();

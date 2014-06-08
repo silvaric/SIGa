@@ -2,6 +2,8 @@ package org.isec.cub.siga.entity;
 
 import android.util.Log;
 
+import com.parse.ParseGeoPoint;
+
 import java.sql.Timestamp;
 
 /**
@@ -9,10 +11,10 @@ import java.sql.Timestamp;
  */
 public class AplicationEntity{
 
+    private String      nome;
     private Timestamp   timestamp;
     private String      categoria;
-    private String      location;
-    private String      nome;
+    private ParseGeoPoint location;
     private int duracao;
 
     public String getNome() {
@@ -31,9 +33,9 @@ public class AplicationEntity{
         this.categoria = categoria;
     }
 
-    public String getLocation() { return location; }
+    public ParseGeoPoint getLocation() { return location; }
 
-    public void setLocation(String location) { this.location = location; }
+    public void setLocation(ParseGeoPoint location) { this.location = location; }
 
     public Timestamp getTimestamp() {
         return timestamp;
