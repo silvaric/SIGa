@@ -1,5 +1,7 @@
 package org.isec.cub.siga.communication;
 
+import android.util.Log;
+
 import org.htmlcleaner.CleanerProperties;
 import org.htmlcleaner.HtmlCleaner;
 import org.htmlcleaner.TagNode;
@@ -99,10 +101,12 @@ public class ReqCategory {
             TagNode resultNode = (TagNode)statsNode[0];
             // get text data from HTML node
             responseString = resultNode.getText().toString();
+            Log.w("CATEGORY", "[SUCCESS-PARSE] category : " + responseString);
         }
 
         if (responseString == null) {
             responseString = "Uncategorized";
+            Log.w("CATEGORY", "[FAILURE-PARSE] category : " + responseString);
         }
     }
 

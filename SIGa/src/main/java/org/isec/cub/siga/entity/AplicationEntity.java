@@ -54,7 +54,7 @@ public class AplicationEntity{
     }
 
     public void description(){
-        Log.w("PARSE OBJECT", "\nDados a enviar :> \nNome : " + getNome() + "\nCategoria : " + getCategoria() +
+        Log.w("OBJECT", "[Dados a enviar]\nNome : " + getNome() + "\nCategoria : " + getCategoria() +
                 "\nLocalização :(" + getLocation().getLatitude() + "," + getLocation().getLongitude() + ")" + "\nDuranção : " + getDuracao());
     }
 }

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -44,14 +43,12 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, MyService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
 
-        Log.w("MAIN", "Fez o getservice: " + pintent.toString());
-
-       //--- rodrigo.tavares - em principio deve bastar colocar a correr uma vez e o android mantem o serviço a correr com o "sticky"
+        //--- rodrigo.tavares - em principio deve bastar colocar a correr uma vez e o android mantem o serviço a correr com o "sticky"
 
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         // Start every 30 seconds
         alarm.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pintent );
-                //setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30*1000, pintent);
+//        setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30*1000, pintent);
     }
 
     @Override

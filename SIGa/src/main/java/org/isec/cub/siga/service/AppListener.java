@@ -86,7 +86,7 @@ public class AppListener extends Thread {
 
                 if(appEntity != null) {
 
-                    Log.w("PREPAR", "Vai adicionar ao array: " + lastAppDetected);
+                    Log.w("AppListener", "[DETECTED] Add into array: " + lastAppDetected);
 
                     //--- adiciona a app ao array
                     this.addToAppToSendList(appEntity);
@@ -97,7 +97,7 @@ public class AppListener extends Thread {
 
                 if(appEntity == null && !ignoreApp) {
 
-                    Log.w("LABEL", "Detetou e vai popular: " + appName);
+                    Log.w("AppListener", "[DETECTED] Get Entity : " + appName);
 
                     //--- popula o objeto
                     appEntity = this.populateAppEntity(appName);
@@ -111,7 +111,7 @@ public class AppListener extends Thread {
             //--- ATENÇÃO: Aqui podemos controlar quantos dados queremos enviar de cada vez
             if(appToSendList != null && appToSendList.size() > 0) {
 
-                Log.w("SEND", "Olha! Vai enviar!!!");
+                Log.w("AppListener", "[SEND] is going to send");
 
                 //--- envia todos os dados da lista e liberta-a
                 this.dumpAppToSendList();
@@ -129,7 +129,6 @@ public class AppListener extends Thread {
 
         //--- recolhe a categoria da app
         categoria = Comms.getComms().getAppCategory(appName);
-        Log.w("SEND", "Categoria" + categoria);
 
         //--- recolhe a localização da app
         location = Comms.getComms().getAppGPS(myService);
@@ -190,7 +189,7 @@ public class AppListener extends Thread {
         //--- verifica se está ligado à internet
         //if(conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING){
 
-            Log.w("SEND", "Vou despejar o array toda pah! :D");
+            Log.w("AppListener", "[SEND] Running objects inside array ");
 
             /*ParseObject testObject = new ParseObject("TestObject");
             testObject.put("foo", "bar");
@@ -199,7 +198,7 @@ public class AppListener extends Thread {
             //--- corre o array de dados a enviar
             for(int i=0; i<appToSendList.size(); i++) {
 
-                Log.w("SEND", "Array de " + i+1 + "/" + appToSendList.size());
+                Log.w("AppListener", "[SEND] Object array " + i + "/" + appToSendList.size());
                 //--- envia o objeto entidade
                 Comms.getComms().sendData(appToSendList.get(i));
             }

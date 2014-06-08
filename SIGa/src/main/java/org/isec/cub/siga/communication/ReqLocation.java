@@ -33,10 +33,11 @@ public class ReqLocation {
 
         if (l != null) {
             responseString = new ParseGeoPoint(l.getLatitude(),l.getLongitude());
-            Log.w("LOCATION", "PARSE getLatitude : " + responseString.getLatitude());
-            Log.w("LOCATION", "PARSE getLongitude : " + responseString.getLongitude());
+            Log.w("LOCATION", "[SUCCESS-PARSE] getLatitude : " + responseString.getLatitude());
+            Log.w("LOCATION", "[SUCCESS-PARSE] getLongitude : " + responseString.getLongitude());
         }else{
             responseString = new ParseGeoPoint();
+            Log.w("LOCATION", "[FAILURE-PARSE] location");
         }
     }
 

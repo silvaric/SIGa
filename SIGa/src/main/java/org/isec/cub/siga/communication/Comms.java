@@ -33,10 +33,8 @@ public class Comms {
          * Devolve uma categoria standard tipo "uncategorized" se não for encontrada a aplicação.
          * */
 
-        String category="";
         String urlToRequest = "http://www.appbrain.com/search?q=" + appName.trim();
-        Log.w("CATEGORY", "urlToRequest :" + urlToRequest);
-        category = ReqCategory.getCategory(urlToRequest);
+        String category = ReqCategory.getCategory(urlToRequest);
 
         /*try {
             AsyncTask<String, Void, String> execute = new RequestCategory().execute(urlToRequest);
@@ -63,9 +61,7 @@ public class Comms {
 
          * */
 
-        ParseGeoPoint location;
-
-        location = ReqLocation.getLocation(myService);
+        ParseGeoPoint location = ReqLocation.getLocation(myService);
 
         /*AsyncTask<MyService, String, double[]> execute = new RequestLocationGPS().execute(myService);
 
@@ -91,24 +87,28 @@ public class Comms {
          * Devolve false se ocorreu algum erro.
          * */
 
-        //
-        //ParseObject sendApplicationName = new ParseObject("sendDistributonSIGa");
-        ParseObject sendApplicationName = new ParseObject("sendDevelopmentSIGa");
-
-        sendApplicationName.put("AppName", appEnt.getNome());
-        sendApplicationName.put("Category", appEnt.getCategoria());
-        sendApplicationName.put("Duration", appEnt.getDuracao());
-        sendApplicationName.put("Location", appEnt.getLocation());
-
-        //--- imprime o objeto
-        appEnt.description();
-
         try {
+
+            //--- imprime o objeto
+            appEnt.description();
+
+            //ParseObject sendApplicationName = new ParseObject("sendDistributonSIGa");
+            ParseObject sendApplicationName = new ParseObject("sendDevelopmentSIGa");
+
+            sendApplicationName.put("AppName", appEnt.getNome());
+            sendApplicationName.put("Category", appEnt.getCategoria());
+            sendApplicationName.put("Duration", appEnt.getDuracao());
+            sendApplicationName.put("Location", appEnt.getLocation());
+
             sendApplicationName.save();
+
+            Log.w("COMMUNICATION", "[SUCCESS] Enviado");
+
             return true;
+
         } catch (ParseException e) {
             e.printStackTrace();
-            Log.w("SEND", "Falhou no envio, causa: " + e.getCause());
+            Log.w("COMMUNICATION", "[FAILURE] Falhou no envio, causa: " + e.getCause());
             return false;
         }
     }
