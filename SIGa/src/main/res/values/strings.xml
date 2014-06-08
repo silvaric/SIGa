@@ -3,12 +3,13 @@
 
     <string name="app_name">SIGa</string>
     <string name="hello_world">Trabalho Prático CUB 13/14</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Homepage</string>
     <string name="titlePrograms">Aplicações Geolocalizadas</string>
     <string name="service_name">serviçoSIGa</string>
     <string name="descriptionTitle">Esta aplicação irá correr em background, irá ser recolhido dados sempre no contexto da aplicação que está a usar naquele momento. </string>
     <string name="descriptionList">Dados:\n- *Nome* e *Categoria* da aplicação\n- *Localização* do utilizador (momento registado quando abre a mesma)\n- *Duração* que esteve a utilizar\n</string>
-    <string name="logoIsec">logoISec</string>
+    <string name="logoIsec">logoIsec</string>
+    <string name="logoDeis">logoDeis</string>
     <color name="white">#ffbbc8c4</color>
 
 </resources>

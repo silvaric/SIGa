@@ -8,11 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import com.parse.Parse;
-
 import org.isec.cub.siga.service.MyService;
-
 import java.util.Calendar;
 
 public class MainActivity extends ActionBarActivity {
@@ -20,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(org.isec.cub.siga.R.layout.activity_main);
 
         /**************************************
          *  SDK Parse.com                       *
@@ -54,7 +51,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(org.isec.cub.siga.activity.R.menu.main, menu);
+        getMenuInflater().inflate(org.isec.cub.siga.R.menu.main, menu);
         return true;
     }
 
@@ -64,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == org.isec.cub.siga.activity.R.id.action_settings) {
+        if (id == org.isec.cub.siga.R.id.action_settings) {
             return true;
         }
         return super.onOptionsItemSelected(item);
