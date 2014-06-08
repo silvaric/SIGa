@@ -129,6 +129,7 @@ public class AppListener extends Thread {
 
         //--- recolhe a categoria da app
         categoria = Comms.getComms().getAppCategory(appName);
+        Log.w("SEND", "Categoria" + categoria);
 
         //--- recolhe a localização da app
         location = Comms.getComms().getAppGPS(myService);
