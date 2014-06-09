@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="org.isec.cub.siga.SobreActivity">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:stretchColumns="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/descriptionTitle"
+                android:id="@+id/textView3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/descriptionList"
+                android:id="@+id/textView4"
+                android:textColor="#ffd26c13"
+                android:singleLine="false"
+                android:password="false"
+                android:phoneNumber="false"
+                android:textSize="20dp"
+                android:layout_marginTop="51dp" />
+
+            <TextView
+                android:text="@string/alunosTitle"
+                android:id="@+id/textView6"
+                android:textColor="#ff4c4a85"
+                android:layout_width="wrap_content"
+                android:textSize="20dp" />
+
+            <TextView
+                android:text="@string/alunos"
+                android:id="@+id/textView5"
+                android:textColor="#ff7875d2"
+                android:layout_width="wrap_content"
+                android:textSize="20dp" />
+
+            <TextView
+                android:text="@string/alunos2"
+                android:id="@+id/textView6"
+                android:textColor="#ff7875d2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"/>
+
+        </TableLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>
