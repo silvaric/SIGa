@@ -39,35 +39,50 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/descriptionTitle"
-        android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="42dp"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentRight="false"
-        android:layout_alignWithParentIfMissing="false" />
+        >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/descriptionList"
-        android:id="@+id/textView4"
-        android:textColor="#ffd26c13"
-        android:singleLine="false"
-        android:password="false"
-        android:phoneNumber="false"
-        android:textSize="20dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="51dp" />
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:stretchColumns="1"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/descriptionTitle"
+                android:id="@+id/textView3"
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="42dp"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignWithParentIfMissing="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/descriptionList"
+                android:id="@+id/textView4"
+                android:textColor="#ffd26c13"
+                android:singleLine="false"
+                android:password="false"
+                android:phoneNumber="false"
+                android:textSize="20dp"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="51dp" />
+
+        </TableLayout>
+    </ScrollView>
 
     <ImageView
         android:layout_width="wrap_content"
