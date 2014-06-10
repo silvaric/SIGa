@@ -26,6 +26,7 @@ public class MyService extends Service {
         appIgnoreList.add("Discador");
         appIgnoreList.add("Settings");
         appIgnoreList.add("Configurações");
+        appIgnoreList.add("HTC Sense");
 
         //--- inicia o listener
         AppListener appListener = new AppListener(this, appIgnoreList);
