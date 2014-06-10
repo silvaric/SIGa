@@ -199,6 +199,7 @@ public class AppListener extends Thread {
                 activeNetwork.isConnectedOrConnecting();
 
         if (isConnected) {
+
             Log.w("AppListener", "[SEND] Running objects inside array ");
 
             /*ParseObject testObject = new ParseObject("TestObject");
