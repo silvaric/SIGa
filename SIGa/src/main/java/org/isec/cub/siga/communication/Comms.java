@@ -33,8 +33,7 @@ public class Comms {
          * Devolve uma categoria standard tipo "uncategorized" se não for encontrada a aplicação.
          * */
 
-        String urlToRequest = "http://www.appbrain.com/search?q=" + appName.trim();
-        String category = ReqCategory.getCategory(urlToRequest);
+        String category = ReqCategory.getCategory(appName.trim());
         if (category == null) {
             category = "Uncategorized";
             Log.w("CATEGORY", "[FAILURE-PARSE] category : " + category);

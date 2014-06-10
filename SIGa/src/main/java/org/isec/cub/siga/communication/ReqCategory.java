@@ -19,58 +19,14 @@ public class ReqCategory {
 
     private static String responseString;
 
-    private ReqCategory(String urlToRequest) throws IOException, XPatherException {
+    private ReqCategory(String appName) throws IOException, XPatherException {
+
+        String encodingAppName = new String(appName.getBytes("UTF-8"), "UTF-8");
+
+        String urlToRequest = "http://www.appbrain.com/search?q=" + encodingAppName;
 
         responseString = null;
-        /*HttpClient httpclient = new DefaultHttpClient();
-        HttpResponse response;
-        String responseString = null;
-        try {
-            response = httpclient.execute(new HttpGet(uri[0]));
-            StatusLine statusLine = response.getStatusLine();
-            if(statusLine.getStatusCode() == HttpStatus.SC_OK){
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                response.getEntity().writeTo(out);
-                out.close();
-                responseString = out.toString();
-            } else{
-                //Closes the connection.
-                response.getEntity().getContent().close();
-                throw new IOException(statusLine.getReasonPhrase());
-            }
-        } catch (ClientProtocolException e) {
-            out.println("1e : " + e.getMessage());
-        } catch (IOException e) {
-            out.println("2e : " + e.getMessage());
-        }*/
 
-        /*
-        HttpClient Client = new DefaultHttpClient();
-        String Content;
-        String Error = null;
-
-        try {
-            HttpGet httpget = new HttpGet(urlToRequest);
-
-            HttpParams params = httpget.getParams();
-            params.setParameter(ClientPNames.HANDLE_REDIRECTS, Boolean.FALSE);
-            httpget.setParams(params);
-
-            HttpResponse httpResp = Client.execute(httpget);
-            int code = httpResp.getStatusLine().getStatusCode();
-            Log.w("CATEGORY", "HTTPGet code : " + code);
-
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            responseString = Client.execute(httpget, responseHandler);
-        } catch (ClientProtocolException e) {
-            System.out.println("1e : " + e.getMessage());
-
-        } catch (IOException e) {
-            System.out.println("2e : " + e.getMessage());
-
-        }
-
-*/
         // config cleaner properties
         HtmlCleaner htmlCleaner = new HtmlCleaner();
         CleanerProperties props = htmlCleaner.getProperties();
@@ -101,7 +57,11 @@ public class ReqCategory {
             TagNode resultNode = (TagNode)statsNode[0];
             // get text data from HTML node
             responseString = resultNode.getText().toString();
-            Log.w("CATEGORY", "[SUCCESS-PARSE] category : " + responseString);
+            if(!responseString.equals(appName)){
+                Log.w("CATEGORY", "[SUCCESS-PARSE] category : " + responseString);
+            }else{
+                responseString = null;
+            }
         }
     }
 

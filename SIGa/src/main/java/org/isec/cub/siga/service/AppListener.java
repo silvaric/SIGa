@@ -2,8 +2,10 @@ package org.isec.cub.siga.service;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.parse.ParseGeoPoint;
@@ -14,8 +16,6 @@ import org.isec.cub.siga.entity.AplicationEntity;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -41,11 +41,10 @@ public class AppListener extends Thread {
     public void run(){
 
         ActivityManager am;
-        List<ActivityManager.RunningAppProcessInfo> l;
-        Iterator<ActivityManager.RunningAppProcessInfo> i;
+        ActivityManager.RunningTaskInfo foregroundTaskInfo;
         PackageManager pm;
-
-        CharSequence processName;
+        String foregroundTaskPackageName;
+        PackageInfo foregroundAppPackageInfo;
 
         AplicationEntity appEntity = null;
 
@@ -54,21 +53,28 @@ public class AppListener extends Thread {
 
         Boolean ignoreApp = false;
 
+        am = (ActivityManager) myService.getSystemService(Context.ACTIVITY_SERVICE);
+        pm = myService.getPackageManager();
+
         while(keepRunning) {
 
-            //--- pega o nome da aplicação (estas inicializações devem dar para optimizar)
-            am = (ActivityManager) myService.getSystemService(myService.ACTIVITY_SERVICE);
-            l = am.getRunningAppProcesses();
-            i = l.iterator();
-            pm = myService.getPackageManager();
-            ActivityManager.RunningAppProcessInfo info = (ActivityManager.RunningAppProcessInfo) (i.next());
+            appName = "none";
+
+            // The first in the list of RunningTasks is always the foreground task.
+            foregroundTaskInfo = am.getRunningTasks(1).get(0);
+            foregroundTaskPackageName = foregroundTaskInfo .topActivity.getPackageName();
+
             try {
-                processName = pm.getApplicationLabel(pm.getApplicationInfo(info.processName, PackageManager.GET_META_DATA));
-                appName = processName.toString();
+                foregroundAppPackageInfo = pm.getPackageInfo(foregroundTaskPackageName, 0);
+                appName = foregroundAppPackageInfo.applicationInfo.loadLabel(pm).toString();
+
             } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-                appName = "none";
+                //e.printStackTrace();
+                Log.w("AppListener", "[DETECTED] Eeeee saiu coco");
             }
+
+            //processName = pm.getApplicationLabel(pm.getApplicationInfo(info.processName, PackageManager.GET_META_DATA));
+            //appName = processName.toString();
 
             //--- verifica se é uma aplicação que deve ignorar
             for(int x=0; x<appIgnoreList.size(); x++){
@@ -187,7 +193,7 @@ public class AppListener extends Thread {
         ConnectivityManager conMgr = (ConnectivityManager)myService.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         //--- verifica se está ligado à internet
-        //if(conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING){
+        if(conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTING){
 
             Log.w("AppListener", "[SEND] Running objects inside array ");
 
@@ -208,9 +214,9 @@ public class AppListener extends Thread {
 
             //--- força o GarbageColection
             System.gc();
-//        }
-//        else
-//            Log.w("LABEL", "Ia enviar, mas não há rede :(");
+        }
+        //else
+            //Log.w("LABEL", "Ia enviar, mas não há rede :(");
     }
 
     //*** pára a thread. não vai ser usado, mas pronto ***
