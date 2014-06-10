@@ -40,7 +40,7 @@
 
             <TextView
                 android:text="@string/alunosTitle"
-                android:id="@+id/textView6"
+                android:id="@+id/textView9"
                 android:textColor="#ff4c4a85"
                 android:layout_width="wrap_content"
                 android:textSize="20dp" />

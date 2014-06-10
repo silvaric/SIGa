@@ -194,6 +194,7 @@ public class AppListener extends Thread {
                 (ConnectivityManager) myService.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
         //--- verifica se está ligado à internet
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();

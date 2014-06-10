@@ -4,7 +4,8 @@
     <string name="app_name">SIGa</string>
     <string name="action_settings">Homepage</string>
     <string name="action_settings2">Sobre</string>
-    <string name="hello_world">Trabalho Prático CUB 13/14</string>
+    <string name="titleApp">Trabalho Prático \nComputação Ubíqua 13/14</string>
+    <string name="titleApp2">Mestrado Informatica e Sistemas \nDesenvolvimento de Software</string>
     <string name="titlePrograms">Aplicações Geolocalizadas</string>
     <string name="service_name">serviçoSIGa</string>
     <string name="descriptionTitle">Esta aplicação irá correr em background, irá ser recolhido dados sempre no contexto da aplicação que está a usar naquele momento. </string>
@@ -16,7 +17,7 @@
 
     <string name="title_activity_sobre">SobreActivity</string>
     <string name="alunosTitle">Alunos MIS :</string>
-    <string name="alunos">Ricardo Silva 2160131</string>
+    <string name="alunos">Ricardo Silva 21160131</string>
     <string name="alunos2">Rodrigo Tavares 21170254</string>
     <string name="logoSiga">SIGa</string>
 
