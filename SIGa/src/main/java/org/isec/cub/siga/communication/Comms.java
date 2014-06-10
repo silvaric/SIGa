@@ -95,8 +95,8 @@ public class Comms {
             //--- imprime o objeto
             appEnt.description();
 
-            //ParseObject sendApplicationName = new ParseObject("sendDistributonSIGa");
-            ParseObject sendApplicationName = new ParseObject("sendDevelopmentSIGa");
+            ParseObject sendApplicationName = new ParseObject("sendDistributonSIGa");
+//            ParseObject sendApplicationName = new ParseObject("sendDevelopmentSIGa");
 
             sendApplicationName.put("AppName", appEnt.getNome());
             sendApplicationName.put("Category", appEnt.getCategoria());
